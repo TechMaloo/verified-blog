@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from .models import Post, Comment, Notification
-from .forms import NewPostForm, UpdatePostForm, CommentForm
+from .models import Post, Comment, Notification, Feed
+from .forms import NewPostForm, UpdatePostForm, CommentForm, NewFeedForm
+
 
 
 def home(request):
@@ -125,3 +126,21 @@ def notifications(request):
         "user_notifications": user_notifications,
     }
     return render(request, "blog/notifications.html", context)
+
+
+@login_required
+def new_feed(request):
+    if request.method == "POST":
+        form = NewFeedForm(request.POST)
+        if form.is_valid():
+            feed = form.save(commit=False)
+            feed.author = request.user
+            feed.save()
+            return redirect("blog:home")
+    else:
+        form = NewFeedForm()
+    context = {
+        "form": form,
+        "title": "Create Post"
+    }
+    return render(request, "blog/feed.html", context)

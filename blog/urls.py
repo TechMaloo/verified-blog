@@ -13,4 +13,6 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("user-posts/<str:username>/", views.one_user_post, name="user_post"),
     path("notifications/", views.notifications, name="notifications"),
+    path("new-feed/", views.new_feed, name="new_feed"),
+
 ]

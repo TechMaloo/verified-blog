@@ -16,6 +16,20 @@ class Post(models.Model):
         return self.title
 
 
+class Feed(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, related_name="feeds", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="feed_pics", null=True, blank=True)
+
+    class Meta:
+        ordering = ["-date_posted"]
+
+    def __str__(self):
+        return self.title
+
+
 # Comment
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
@@ -36,4 +50,3 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.message
-
