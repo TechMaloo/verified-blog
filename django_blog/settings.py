@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-jkc@l-!86k_22pfm_w!giv&xr+#hy@*&yf72is$%_m69den-)j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["web-production-c0f2.up.railway.app"]
+ALLOWED_HOSTS = ["verified100dating.up.railway.app"]
 
 LOGIN_URL = "userauths:login"
 LOGIN_REDIRECT_URL = "blog:home"
