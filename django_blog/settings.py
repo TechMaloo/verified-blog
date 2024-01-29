@@ -16,6 +16,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["verified100dating.up.railway.app"]
 
+CSRF_TRUSTED_ORIGINS = ["https://verified100dating.up.railway.app"]
+
 LOGIN_URL = "userauths:login"
 LOGIN_REDIRECT_URL = "blog:home"
 LOGOUT_REDIRECT_URL = "blog:home"
